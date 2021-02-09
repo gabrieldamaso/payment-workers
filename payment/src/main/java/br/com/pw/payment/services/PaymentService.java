@@ -9,26 +9,21 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.pw.payment.entities.Payment;
 import br.com.pw.payment.entities.Worker;
+import br.com.pw.payment.feignclients.WorkerrFeignClient;
 
 @Service
 public class PaymentService {
-	
-	@Value("${workerr.host}")
-	private String workerrHost;
-	
-	private final RestTemplate restTemplate;
-	
-	public PaymentService(final RestTemplate restTemplate) {
-		this.restTemplate = restTemplate;
+
+	private final WorkerrFeignClient workerrFeignClient;
+
+	public PaymentService(final WorkerrFeignClient workerrFeignClient) {
+		this.workerrFeignClient = workerrFeignClient;
 	}
 
 	public Payment getPayment(long workerId, int days) {
-		Map<String, String> uriVariables = new HashMap<>();
-		
-		uriVariables.put("id", ""+workerId);
-		
-		Worker worker = restTemplate.getForObject(workerrHost + "/workers/{id}", Worker.class, uriVariables);
-		
-		return new Payment(worker.getName(), worker.getDailyIncome(), days );
+
+		Worker worker = workerrFeignClient.findById(workerId).getBody();
+
+		return new Payment(worker.getName(), worker.getDailyIncome(), days);
 	}
 }
