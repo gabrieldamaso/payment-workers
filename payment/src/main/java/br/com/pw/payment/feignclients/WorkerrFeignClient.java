@@ -10,7 +10,7 @@ import br.com.pw.payment.entities.Worker;
 
 
 @Component
-@FeignClient(name ="workerr", url = "localhost:8001", path = "/workers" )
+@FeignClient(name ="workerr", path = "/workers" )
 public interface WorkerrFeignClient {
 	
 	@GetMapping(value = "{id}" )
