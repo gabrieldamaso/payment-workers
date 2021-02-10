@@ -39,8 +39,12 @@ public class WorkerResource {
 		return ResponseEntity.ok(list);
 	}
 	
-	@GetMapping(value = "{id}" )
-	public ResponseEntity<Worker> findById(@PathVariable Long id){
+	@GetMapping(value = "/{id}" )
+	public ResponseEntity<Worker> findById(@PathVariable Long id) throws InterruptedException{
+		
+		//sleep para testar as configuracoes de timeout do hystrix,ribbon-load-balancer e api-gateway
+		Thread.sleep(3000L);
+		
 		logger.info("WORKERR PORT= " + env.getProperty("local.server.port"));
 		
 		Worker worker = workerRepository.findById(id).get();
