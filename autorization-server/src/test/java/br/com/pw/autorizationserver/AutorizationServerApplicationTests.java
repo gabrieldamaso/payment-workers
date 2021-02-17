@@ -1,10 +1,10 @@
-package br.com.pw.oauth;
+package br.com.pw.autorizationserver;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OauthApplicationTests {
+class AutorizationServerApplicationTests {
 
 	@Test
 	void contextLoads() {

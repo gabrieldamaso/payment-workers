@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.pw</groupId>
-	<artifactId>oauth</artifactId>
+	<artifactId>autorization-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>oauth</name>
-	<description>autorization server for aplications pw</description>
+	<name>autorization-server</name>
+	<description>autorization oauth2 server for aplications pw</description>
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.BUILD-SNAPSHOT</spring-cloud.version>
