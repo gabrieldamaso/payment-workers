@@ -36,11 +36,11 @@ docker network create hr-net
 $ docker pull postgres:12-alpine
 
 container postgress do workker 
-$ docker run postgres:12-alpine -p 5432:5432 --name workerr-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_worker
-
+$ docker run -p 5432:5432 --name worker-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_worker postgres:12-alpine
+  
 container postgress do user
-$ docker run postgres:12-alpine -p 5432:5432 --name user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_user
-
+$ docker run -p 5432:5432 --name user-pg12 --network hr-net -e POSTGRES_PASSWORD=1234567 -e POSTGRES_DB=db_user postgres:12-alpine
+  
 ```
 
 
