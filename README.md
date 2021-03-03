@@ -44,42 +44,42 @@ $ docker run -p 5432:5432 --name user-pg12 --network hr-net -e POSTGRES_PASSWORD
 ```
 
 
-## hr-config-server
+## config-server
 ```
 FROM openjdk:11
 VOLUME /tmp
 EXPOSE 8888
-ADD ./target/hr-config-server-0.0.1-SNAPSHOT.jar hr-config-server.jar
-ENTRYPOINT ["java","-jar","/hr-config-server.jar"]
+ADD ./target/config-server-0.0.1-SNAPSHOT.jar config-server.jar
+ENTRYPOINT ["java","-jar","/config-server.jar"]
 ``` 
 ```
 mvnw clean package
-docker build -t hr-config-server:v1 .
-docker run hr-config-server:v1 -p 8888:8888 --name hr-config-server --network hr-net -e GITHUB_USER=acenelio -e GITHUB_PASS=
+docker build -t config-server:v1 .
+docker run -p 8888:8888 --name config-server --network hr-net -e GITHUB_USER= -e GITHUB_PASS= config-server:v1
 ```
 
-## hr-eureka-server
+## eureka-server
 ```
 FROM openjdk:11
 VOLUME /tmp
 EXPOSE 8761
-ADD ./target/hr-eureka-server-0.0.1-SNAPSHOT.jar hr-eureka-server.jar
-ENTRYPOINT ["java","-jar","/hr-eureka-server.jar"]
+ADD ./target/eureka-server-0.0.1-SNAPSHOT.jar eureka-server.jar
+ENTRYPOINT ["java","-jar","/eureka-server.jar"]
 ``` 
 ```
 mvnw clean package
-docker build -t hr-eureka-server:v1 .
-docker run hr-eureka-server:v1 -p 8761:8761 --name hr-eureka-server --network hr-net
+docker build -t eureka-server:v1 .
+docker run -p 8761:8761 --name eureka-server --network hr-net eureka-server:v1
 ```
 
-## hr-worker
+## workerr
 ```
 FROM openjdk:11
 VOLUME /tmp
-ADD ./target/hr-worker-0.0.1-SNAPSHOT.jar hr-worker.jar
-ENTRYPOINT ["java","-jar","/hr-worker.jar"]
+ADD ./target/workerr-0.0.1-SNAPSHOT.jar workerr.jar
+ENTRYPOINT ["java","-jar","/workerr.jar"]
 ``` 
 ```
 mvnw clean package -DskipTests
-docker build -t hr-worker:v1 .
-docker run hr-worker:v1 -P --network hr-net
+docker build -t workerr:v1 .
+docker run -P --network hr-net workerr:v1
