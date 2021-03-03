@@ -83,3 +83,18 @@ ENTRYPOINT ["java","-jar","/workerr.jar"]
 mvnw clean package -DskipTests
 docker build -t workerr:v1 .
 docker run -P --network hr-net workerr:v1
+
+
+
+## user
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/user-0.0.1-SNAPSHOT.jar user.jar
+ENTRYPOINT ["java","-jar","/user.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t user:v1 .
+docker run -P --network hr-net user:v1
+
