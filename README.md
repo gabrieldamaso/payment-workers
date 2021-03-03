@@ -83,7 +83,7 @@ ENTRYPOINT ["java","-jar","/workerr.jar"]
 mvnw clean package -DskipTests
 docker build -t workerr:v1 .
 docker run -P --network hr-net workerr:v1
-
+```
 
 
 ## user
