@@ -97,4 +97,17 @@ ENTRYPOINT ["java","-jar","/user.jar"]
 mvnw clean package -DskipTests
 docker build -t user:v1 .
 docker run -P --network hr-net user:v1
+```
 
+## payment
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/payment-0.0.1-SNAPSHOT.jar payment.jar
+ENTRYPOINT ["java","-jar","/payment.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t payment:v1 .
+docker run -P --network hr-net payment:v1
+```
