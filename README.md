@@ -55,7 +55,7 @@ ENTRYPOINT ["java","-jar","/config-server.jar"]
 ```
 mvnw clean package
 docker build -t config-server:v1 .
-docker run config-server:v1 -p 8888:8888 --name config-server --network hr-net -e GITHUB_USER= -e GITHUB_PASS=
+docker run -p 8888:8888 --name config-server --network hr-net -e GITHUB_USER= -e GITHUB_PASS= config-server:v1
 ```
 
 ## eureka-server
@@ -69,7 +69,7 @@ ENTRYPOINT ["java","-jar","/eureka-server.jar"]
 ```
 mvnw clean package
 docker build -t eureka-server:v1 .
-docker run eureka-server:v1 -p 8761:8761 --name eureka-server --network hr-net
+docker run -p 8761:8761 --name eureka-server --network hr-net eureka-server:v1
 ```
 
 ## workerr
@@ -82,4 +82,4 @@ ENTRYPOINT ["java","-jar","/workerr.jar"]
 ```
 mvnw clean package -DskipTests
 docker build -t workerr:v1 .
-docker run workerr:v1 -P --network hr-net
+docker run -P --network hr-net workerr:v1
