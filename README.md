@@ -111,3 +111,16 @@ mvnw clean package -DskipTests
 docker build -t payment:v1 .
 docker run -P --network hr-net payment:v1
 ```
+
+## autorization-server
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/autorization-server-0.0.1-SNAPSHOT.jar autorization-server.jar
+ENTRYPOINT ["java","-jar","/autorization-server.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t autorization-server:v1 .
+docker run -P --network hr-net autorization-server:v1
+```
