@@ -135,7 +135,7 @@ ADD ./target/api-gateway-zull-0.0.1-SNAPSHOT.jar api-gateway-zull.jar
 ENTRYPOINT ["java","-jar","/api-gateway-zull.jar"]
 ``` 
 ```
-mvnw clean package
+mvnw clean package -DskipTests
 docker build -t api-gateway-zull:v1 .
 docker run -p 8761:8761 --name api-gateway-zull --network hr-net eureka-server:v1
 ```
