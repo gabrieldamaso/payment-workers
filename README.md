@@ -82,7 +82,7 @@ ENTRYPOINT ["java","-jar","/workerr.jar"]
 ```
 mvnw clean package -DskipTests
 docker build -t workerr:v1 .
-docker run -P --network hr-net workerr:v1
+docker run -P --name workerr --network hr-net workerr:v1
 ```
 
 
@@ -96,5 +96,47 @@ ENTRYPOINT ["java","-jar","/user.jar"]
 ```
 mvnw clean package -DskipTests
 docker build -t user:v1 .
-docker run -P --network hr-net user:v1
+docker run -P --name user --network hr-net user:v1
+```
+
+## payment
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/payment-0.0.1-SNAPSHOT.jar payment.jar
+ENTRYPOINT ["java","-jar","/payment.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t payment:v1 .
+docker run -P --name payment --network hr-net payment:v1
+```
+
+## autorization-server
+```
+FROM openjdk:11
+VOLUME /tmp
+ADD ./target/autorization-server-0.0.1-SNAPSHOT.jar autorization-server.jar
+ENTRYPOINT ["java","-jar","/autorization-server.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t autorization-server:v1 .
+docker run -P --name autorization-server --network hr-net autorization-server:v1
+```
+
+
+## api-gateway-zull
+```
+FROM openjdk:11
+VOLUME /tmp
+EXPOSE 8765
+ADD ./target/api-gateway-zull-0.0.1-SNAPSHOT.jar api-gateway-zull.jar
+ENTRYPOINT ["java","-jar","/api-gateway-zull.jar"]
+``` 
+```
+mvnw clean package -DskipTests
+docker build -t api-gateway-zull:v1 .
+docker run -p 8765:8765 --name api-gateway-zull --network hr-net api-gateway-zull:v1
+```
 
