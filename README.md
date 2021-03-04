@@ -137,6 +137,6 @@ ENTRYPOINT ["java","-jar","/api-gateway-zull.jar"]
 ```
 mvnw clean package -DskipTests
 docker build -t api-gateway-zull:v1 .
-docker run -p 8761:8761 --name api-gateway-zull --network hr-net api-gateway-zull:v1
+docker run -p 8765:8765 --name api-gateway-zull --network hr-net api-gateway-zull:v1
 ```
 
